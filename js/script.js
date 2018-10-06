@@ -1,9 +1,19 @@
 // CSGOClicker - Case CSGOClicker
 //money, inventory, jackpot
+(function(){
 var itemCounter = 0;
 var fps = 15;
 
 var money = 7.50;
+var username = localStorage.getItem('username');
+if (localStorage.getItem("username") === null) {
+	localStorage.setItem('username' , "Player 1 (You)")
+}
+var useravatar = localStorage.getItem('imgData');
+if (localStorage.getItem("imgData") === null) {
+	localStorage.setItem("imgData" , "https://i.imgur.com/ICK2lr1.jpg")
+}
+
 var currentCase = "case1";
 var acceptMoneyPerClick = 0.1;
 
@@ -14,6 +24,12 @@ var acceptMoneyPerClick = 0.1;
 
 //sorting: by money, rarity
 var popup = true;
+var unboxsound = true;
+var menusound = true;
+var lostsound = true;
+var botsound = true;
+var wonsound = true;
+var acceptedsound = true;
 
 var inventory = {};
 var jackpotInventory = {};
@@ -5538,27 +5554,27 @@ var knives = {
 		knife52: {
 			name: "✯ Shadow Daggers | Urban Masked BS",
 			price: 58.45,
-			img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1fLEcjVL49KJh5C0g_bkNoTEhGlQ5vp5j-jX7LP5iUazrl0_ZGimJNDGewc_aVvY-QS8yby915e7v53NmnAyuyQj432JlkPihxlNcKUx0oLGuBt0"
+			img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJfw-bbeQJR_OOilZCOqOLmMbrfqWNU6dNoteXA54vwxgzn_UA6ZG6gJdPEIFU-aQ6F-1O3xevqhpe678zPyHZr6XQg4nvYmESpwUYbrI1KLmM"
 		},
 		knife53: {
 			name: "✯ Shadow Daggers | Urban Masked WW",
 			price: 61.84,
-			img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1fLEcjVL49KJh5C0g_bkNoTEhGlQ5vp8j-3I4IHKhFWmrBZyYG3yLITGIQ5qN1nW_1Xoxr3shp_pu5jAziRjvSAk7H6Omx20gk1FOPsv26LsGCteJg"
+			img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJfw-bbeQJR_OOilZCOqOLmMbrfqWZU7Mxkh9bN9J7yjRri-Bc6N2umJ9fGdQJvM1uC_VDow-a6hZa5u8nMzyE27CAhsC7dlhW1n1gSOQVoKPxT"
 		},
 		knife54: {
 			name: "✯ Shadow Daggers | Urban Masked FT",
 			price: 60.00,
-			img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1fLEcjVL49KJh5C0g_bkNoTEhGlQ5vp8j-3I4IHKhFWmrBZyYG3yLITGIQ5qN1nW_1Xoxr3shp_pu5jAziRjvSAk7H6Omx20gk1FOPsv26LsGCteJg"
+			img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJfw-bbeQJR_OOilZCOqOLmMbrfqWZU7Mxkh9bN9J7yjRri-Bc6N2umJ9fGdQJvM1uC_VDow-a6hZa5u8nMzyE27CAhsC7dlhW1n1gSOQVoKPxT"
 		},
 		knife55: {
 			name: "✯ Shadow Daggers | Urban Masked MW",
 			price: 75.67,
-			img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1fLEcjVL49KJh5C0g_bkNoTEhGlQ5vp9g-7J4bP5iUazrl0_YGDzINOdcwBsNwvT-gLqwO3v1JHtvZXPzCc1uSdz5n2IyxW0hRtIcKUx0k4sDK_g"
+			img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJfw-bbeQJR_OOilZCOqOLmMbrfqWdY781lteXA54vwxlbg_0BvZmDxLITHcFVsMl_VqVPtkunpgMfqtM7AmHJj7yRw5yuLy0epwUYba3Jf2fM"
 		},
 		knife56: {
 			name: "✯ Shadow Daggers | Urban Masked FN",
 			price: 125.00,
-			img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1fLEcjVL49KJh5C0g_bkNoTEhGlQ5vp9g-7J4bP5iUazrl0_YGDzINOdcwBsNwvT-gLqwO3v1JHtvZXPzCc1uSdz5n2IyxW0hRtIcKUx0k4sDK_g"
+			img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJfw-bbeQJR_OOilZCOqOLmMbrfqWdY781lteXA54vwxlbg_0BvZmDxLITHcFVsMl_VqVPtkunpgMfqtM7AmHJj7yRw5yuLy0epwUYba3Jf2fM"
 		}
 	},
 	shadowst: {
@@ -5820,27 +5836,27 @@ var knives = {
 		knife52: {
 			name: "✯ StatTrak™ Shadow Daggers | Urban Masked BS",
 			price: 85.07,
-			img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1fLEcjVL49KJh5C0g_bkNoTEhGlQ5vp5j-jX7LP5iUazrl0_ZGimJNDGewc_aVvY-QS8yby915e7v53NmnAyuyQj432JlkPihxlNcKUx0oLGuBt0"
+			img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJfw-bbeQJR_OOilZCOqOLmMbrfqWNU6dNoteXA54vwxgzn_UA6ZG6gJdPEIFU-aQ6F-1O3xevqhpe678zPyHZr6XQg4nvYmESpwUYbrI1KLmM"
 		},
 		knife53: {
 			name: "✯ StatTrak™ Shadow Daggers | Urban Masked WW",
 			price: 142.94,
-			img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1fLEcjVL49KJh5C0g_bkNoTEhGlQ5vp8j-3I4IHKhFWmrBZyYG3yLITGIQ5qN1nW_1Xoxr3shp_pu5jAziRjvSAk7H6Omx20gk1FOPsv26LsGCteJg"
+			img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJfw-bbeQJR_OOilZCOqOLmMbrfqWZU7Mxkh9bN9J7yjRri-Bc6N2umJ9fGdQJvM1uC_VDow-a6hZa5u8nMzyE27CAhsC7dlhW1n1gSOQVoKPxT"
 		},
 		knife54: {
 			name: "✯ StatTrak™ Shadow Daggers | Urban Masked FT",
 			price: 92.00,
-			img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1fLEcjVL49KJh5C0g_bkNoTEhGlQ5vp8j-3I4IHKhFWmrBZyYG3yLITGIQ5qN1nW_1Xoxr3shp_pu5jAziRjvSAk7H6Omx20gk1FOPsv26LsGCteJg"
+			img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJfw-bbeQJR_OOilZCOqOLmMbrfqWZU7Mxkh9bN9J7yjRri-Bc6N2umJ9fGdQJvM1uC_VDow-a6hZa5u8nMzyE27CAhsC7dlhW1n1gSOQVoKPxT"
 		},
 		knife55: {
 			name: "✯ StatTrak™ Shadow Daggers | Urban Masked MW",
 			price: 129.58,
-			img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1fLEcjVL49KJh5C0g_bkNoTEhGlQ5vp9g-7J4bP5iUazrl0_YGDzINOdcwBsNwvT-gLqwO3v1JHtvZXPzCc1uSdz5n2IyxW0hRtIcKUx0k4sDK_g"
+			img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJfw-bbeQJR_OOilZCOqOLmMbrfqWdY781lteXA54vwxlbg_0BvZmDxLITHcFVsMl_VqVPtkunpgMfqtM7AmHJj7yRw5yuLy0epwUYba3Jf2fM"
 		},
 		knife56: {
 			name: "✯ StatTrak™ Shadow Daggers | Urban Masked FN",
 			price: 250.00,
-			img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1fLEcjVL49KJh5C0g_bkNoTEhGlQ5vp9g-7J4bP5iUazrl0_YGDzINOdcwBsNwvT-gLqwO3v1JHtvZXPzCc1uSdz5n2IyxW0hRtIcKUx0k4sDK_g"
+			img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJfw-bbeQJR_OOilZCOqOLmMbrfqWdY781lteXA54vwxlbg_0BvZmDxLITHcFVsMl_VqVPtkunpgMfqtM7AmHJj7yRw5yuLy0epwUYba3Jf2fM"
 		}
 	},
 	falchion: {
@@ -22957,7 +22973,10 @@ $(".inventoryItemContainer").on("click", ".inventoryItem", function() {
 		$(".tooltipAnchor").hide();
 		var item = eval(atob(inventory[this.id]));
 		//console.log(item);
-		$('#menu')[0].play();
+		if (menusound)
+		{
+			$('#menu')[0].play();
+		}
 		inventoryCurrent -= 1;
 		money += (item['price']);
 		//console.log(item['price']);
@@ -22974,8 +22993,11 @@ $("#case").click(function() {
 		var price = (operationCases[currentCase]["price"] - caseDiscount) + (keyPrice - keyDiscount);
 		if (price >= 0 && money >= price) {
 			money -= price;
-			$('#unbox')[0].play();
 			randSkin();
+			if (unboxsound)
+			{
+				$('#unbox')[0].play();
+			}
 		} else if (price < 0 && money >= price) {
 			randSkin();
 		}
@@ -22987,26 +23009,47 @@ $(".jackpotDifficulty").click(function() {
 	if (!jackpotInProgress) {
 		$(".jackpotDifficultyContainer div").removeClass("active");
 		$(this).addClass("active");
-		$('#menu')[0].play();
 		jackpotDifficulty = this.id;
-
+		if (menusound)
+		{
+			$('#menu')[0].play();
+		}
 	}
 });
 
 $(".modalMain").on("click", ".modalClose", function() {
 	$('.modalWindow').toggle();
-	$('#menu')[0].play();
+	if (menusound)
+		{
+			$('#menu')[0].play();
+		}
 });
 
 $("#acceptButton").click(function() {
 	money += acceptMoneyPerClick;
-	$('#accepted')[0].play();
+	if (acceptedsound)
+		{
+			$('#accepted')[0].play();
+		}
 });
 
 $(".about").click(function() {
 	$(".main").toggleClass("small");
-	$('#menu')[0].play();
+	if (menusound)
+		{
+			$('#menu')[0].play();
+		}
 });
+var username = localStorage.getItem('username');
+if (localStorage.getItem("username") === null) {
+	localStorage.setItem('username' , "Player 1 (You)")
+}
+var useravatar = localStorage.getItem('imgData');
+if (localStorage.getItem("imgData") === null) {
+	localStorage.setItem("imgData" , "https://i.imgur.com/ICK2lr1.jpg")
+}
+$(".profileavatar").html('<img src="' + useravatar + '" width="50" height="50">');
+$(".profile").html("Welcome " + username);
 
 /*===============TABS===============*/
 
@@ -23017,12 +23060,17 @@ $("#caseTab").click(function() {
 		$("#upgradeTab").removeClass("active");
 		$("#inventoryTab").removeClass("active");
 		$("#coinTab").removeClass("active");
+		$("#newsTab").removeClass("active");
+		$(".newsContainer").hide();
 		$(".upgradeContainer").hide();
 		$(".jackpotRightContainer").hide();
 		$(".inventoryContainer").hide();
 		$(".caseContainer").show();
 		$(".coinContainer").hide();
-		$('#menu')[0].play();
+		if (menusound)
+		{
+			$('#menu')[0].play();
+		}
 		$(".rightMain").css("bottom", "135px");
 		$(".tradeButtonContainer").show();
 		if ($(".unboxing").css('display') !== 'block') {
@@ -23039,12 +23087,17 @@ $("#inventoryTab").click(function() {
 		$("#upgradeTab").removeClass("active");
 		$("#caseTab").removeClass("active");
 		$("#coinTab").removeClass("active");
+		$("#newsTab").removeClass("active");
+		$(".newsContainer").hide();
 		$(".upgradeContainer").hide();
 		$(".jackpotRightContainer").hide();
 		$(".inventoryContainer").show();
 		$(".caseContainer").hide();
 		$(".coinContainer").hide();
-		$('#menu')[0].play();
+		if (menusound)
+		{
+			$('#menu')[0].play();
+		}
 		$(".rightMain").css("bottom", "135px");
 		$(".tradeButtonContainer").show();
 		if ($(".unboxing").css('display') !== 'block') {
@@ -23061,12 +23114,17 @@ $("#upgradeTab").click(function() {
 		$("#caseTab").removeClass("active");
 		$("#inventoryTab").removeClass("active");
 		$("#coinTab").removeClass("active");
+		$("#newsTab").removeClass("active");
+		$(".newsContainer").hide();
 		$(".upgradeContainer").show();
 		$(".jackpotRightContainer").hide();
 		$(".inventoryContainer").hide();
 		$(".caseContainer").hide();
 		$(".coinContainer").hide();
-		$('#menu')[0].play();
+		if (menusound)
+		{
+			$('#menu')[0].play();
+		}
 		$(".rightMain").css("bottom", "135px");
 		$(".tradeButtonContainer").show();
 		if ($(".unboxing").css('display') !== 'block') {
@@ -23085,12 +23143,17 @@ $("#jackpotTab").click(function() {
 			$("#caseTab").removeClass("active");
 			$("#inventoryTab").removeClass("active");
 			$("#coinTab").removeClass("active");
+			$("#newsTab").removeClass("active");
+			$(".newsContainer").hide();
 			$(".upgradeContainer").hide();
 			$(".jackpotRightContainer").show();
 			$(".inventoryContainer").hide();
 			$(".caseContainer").hide();
 			$(".coinContainer").hide();
+			if (menusound)
+			{
 			$('#menu')[0].play();
+			}
 			$(".tradeButtonContainer").hide();
 			$(".rightMain").css("bottom", "0");
 			if ($(".unboxing").css('display') == 'block') {
@@ -23107,13 +23170,45 @@ $("#coinTab").click(function() {
 		$("#jackpotTab").removeClass("active");
 		$("#upgradeTab").removeClass("active");
 		$("#inventoryTab").removeClass("active");
+		$("#newsTab").removeClass("active");
 		$("#caseTab").removeClass("active");
 		$(".upgradeContainer").hide();
 		$(".jackpotRightContainer").hide();
+		$(".newsContainer").hide();
 		$(".coinContainer").show();
 		$(".caseContainer").hide();
 		$(".inventoryContainer").hide();
-		$('#menu')[0].play();
+		if (menusound)
+		{
+			$('#menu')[0].play();
+		}
+		$(".rightMain").css("bottom", "135px");
+		$(".tradeButtonContainer").hide();
+		if ($(".unboxing").css('display') !== 'block') {
+			$(".unboxing").show();
+			$(".jackpot").hide();
+		}
+	}
+});
+
+$("#newsTab").click(function() {
+	if ($(".newsContainer").css('display') == 'none') {
+		$(this).toggleClass("active");
+		$("#jackpotTab").removeClass("active");
+		$("#upgradeTab").removeClass("active");
+		$("#inventoryTab").removeClass("active");
+		$("#caseTab").removeClass("active");
+		$("#coinTab").removeClass("active");
+		$(".upgradeContainer").hide();
+		$(".jackpotRightContainer").hide();
+		$(".newsContainer").show();
+		$(".coinContainer").hide();
+		$(".caseContainer").hide();
+		$(".inventoryContainer").hide();
+		if (menusound)
+		{
+			$('#menu')[0].play();
+		}
 		$(".rightMain").css("bottom", "135px");
 		$(".tradeButtonContainer").hide();
 		if ($(".unboxing").css('display') !== 'block') {
@@ -23125,7 +23220,10 @@ $("#coinTab").click(function() {
 
 $('.settings').click(function() {
 	$('.settingsList').toggleClass("hidden");
-	$('#menu')[0].play();
+	if (menusound)
+		{
+			$('#menu')[0].play();
+		}
 });
 
 $('#popupCheckbox').change(function() {
@@ -23135,6 +23233,55 @@ $('#popupCheckbox').change(function() {
 		popup = true;
 	}
 });
+
+$('#unboxCheckbox').change(function() {
+	if (this.checked) {
+		unboxsound = false;
+	} else {
+		unboxsound = true;
+	}
+});
+
+$('#menuCheckbox').change(function() {
+	if (this.checked) {
+		menusound = false;
+	} else {
+		menusound = true;
+	}
+});
+
+$('#acceptedCheckbox').change(function() {
+	if (this.checked) {
+		acceptedsound = false;
+	} else {
+		acceptedsound = true;
+	}
+});
+
+$('#wonCheckbox').change(function() {
+	if (this.checked) {
+		wonsound = false;
+	} else {
+		wonsound = true;
+	}
+});
+
+$('#botCheckbox').change(function() {
+	if (this.checked) {
+		botsound = false;
+	} else {
+		botsound = true;
+	}
+});
+
+$('#lostCheckbox').change(function() {
+	if (this.checked) {
+		lostsound = false;
+	} else {
+		lostsound = true;
+	}
+});
+
 $(".clearGameState").click(function() {
 	clearGameState();
 });
@@ -23183,7 +23330,10 @@ function upgradeMultiplier(basePrice, amount) {
 $(".stackingUpgradeContainer").on("click", ".upgrade", function() {
 	var name = stackingUpgrades[this.id]["name"];
 	var desc = stackingUpgrades[this.id]["desc"];
-	$('#menu')[0].play();
+	if (menusound)
+		{
+			$('#menu')[0].play();
+		}
 
 	if (money >= stackingUpgrades[this.id]["price"]) {
 		money -= stackingUpgrades[this.id]["price"];
@@ -23309,7 +23459,10 @@ $(".jackpotRightPlayer").on("click", ".inventorySwapItem", function() {
 				jackpotInventory[this.id] = inventory[this.id];
 				drawSwappedItem(item.name, item.price, item.img, this.id);
 				swapSkins += 1;
-				$('#menu')[0].play();
+				if (menusound)
+				{
+					$('#menu')[0].play();
+				}
 				swapSkinsValue += item.price;
 				updateSwapInfo();
 				//delete inventory[this.id];
@@ -23539,6 +23692,7 @@ function inventoryReDraw() {
 function jackpotStart() {
 	$(".jackpotRightToBet").html("");
 	$(".winnerIs").html("");
+	$(".winneravatar").html("");
 	jackpotInProgress = true;
 	var skins = 0;
 	var maxSkins = 150;
@@ -23623,7 +23777,7 @@ function jackpotStart() {
 
 	}
 	$(".jackpotCountDown").html(jackpotTimerCounter);
-	drawPlayerDepositor("Player1 (You)", (playerTickets / 100).toFixed(2), "https://i.imgur.com/ICK2lr1.jpg");
+	drawPlayerDepositor(username, (playerTickets / 100).toFixed(2), useravatar);
 	$(".jackpotCurrentWorth").html("Pot: $" + (totalTickets / 100).toFixed(2));
 	$(".jackpotPercentOfTickets").html("Your odds to win: " + (playerTickets / totalTickets * 100).toFixed(2) + "%");
 
@@ -23740,7 +23894,10 @@ function jackpotStart() {
 				var botSelector = "deposit" + depositTicker;
 
 				$('#' + botSelector).append('<div class="depositorSkin ' + rarity + '" title="' + name + '"><div class="itemPrice">' + price + '</div> <img src=' + img + '> </div>');
+				if (botsound)
+				{
 				$('#botentered')[0].play();
+				}
 				//console.log(randomBot);
 			}
 
@@ -23778,10 +23935,14 @@ function jackpotStart() {
 		console.log("Total Tickets: " + totalTickets);
 
 		if (randTicket <= playerTickets && randTicket > 0) {
-			$(".winnerIs").html("You Win!");
+			$(".winneravatar").html('<img src="' + useravatar + '" width="70" height="70">');
+			$(".winnerIs").html(username +" has won $" + (totalTickets / 100).toFixed(2) + " with " + (playerTickets / totalTickets * 100).toFixed(2) + "%" );
 			$("#playerDepositor").addClass("winner");
 			console.log("You Win!");
-			$('#youwon')[0].play();
+			if(wonsound)
+			{
+				$('#youwon')[0].play();
+			}
 			inventoryCurrent += Object.keys(pot).length;
 			$.extend(inventory, pot);
 			skinOverflow();
@@ -23794,10 +23955,14 @@ function jackpotStart() {
 			for (var i = 0; i < players.length; i++) {
 				var botTicketsOwned = botTickets[players[i]];
 				if (randTicket <= (botTicketsOwned + ticketAdder) && randTicket > ticketAdder) {
+					$(".winneravatar").html('<img src="' + jackpotAI[players[i]][2] + '" width="70" height="70">');
 					$(".winnerIs").html("Winner is: " + jackpotAI[players[i]][0] + " with " + (botTicketsOwned / totalTickets * 100).toFixed(2) + "%");
 					$("#jackpotDepositor" + players[i]).addClass("winner");
 					console.log(players[i]);
-					$('#startgame')[0].play();
+					if (lostsound)
+					{
+						$('#startgame')[0].play();
+					}
 					itemCounter -= jackpotItemCounter;
 					break;
 				} else {
@@ -23924,7 +24089,14 @@ function saveGameState() {
 		"inventory": inventory,
 		"itemCounter": itemCounter,
 		"currentCase": currentCase,
-		"stackingUpgradesPurchased": stackingUpgradesPurchased
+		"stackingUpgradesPurchased": stackingUpgradesPurchased,
+		"popup": popup,
+		"unboxsound" : unboxsound,
+		"menusound" : menusound,
+		"acceptedsound" : acceptedsound,
+		"lostsound" : lostsound,
+		"wonsound" : wonsound,
+		"botsound" : botsound,
 	};
 
 	localStorage.setItem("savegame", JSON.stringify(string));
@@ -23942,6 +24114,13 @@ function loadGameState() {
 		itemCounter = saveGame["itemCounter"];
 		currentCase = saveGame["currentCase"];
 		stackingUpgradesPurchased = saveGame["stackingUpgradesPurchased"];
+		popup = saveGame["popup"];
+		unboxsound = saveGame["unboxsound"];
+		menusound = saveGame["menusound"];
+		acceptedsound = saveGame["acceptedsound"];
+		lostsound = saveGame["lostsound"];
+		wonsound = saveGame["wonsound"];
+		botsound = saveGame["botsound"];
 		drawInventory();
 		inventoryValue();
 		skinOverflow();
@@ -23953,138 +24132,27 @@ function loadGameState() {
 }
 
 function clearGameState() {
-	localStorage.removeItem("savegame");
-	console.log("Game save deleted!");
-	location.reload();
+	var clearsave = prompt("Are you sure you want to clear current save? (y/n)")
+	if (clearsave === "n")
+	{
+		var notclear = alert("Your save was not cleared.");
+	}
+	else if (clearsave === "y")
+	{
+		var cleared = alert("Your save was cleared.");
+		localStorage.removeItem("savegame");
+		localStorage.removeItem("imgData");
+		localStorage.removeItem("username");
+		console.log("Game save deleted!");
+		location.reload();
+	}
+	else
+	{
+		var wronginput = alert("Please put in the correct input.");
+	}
 }
 
 /*===============CANVAS===============*/
-
-/*===============Music===============*/
-
-/*===============Start Game===============*/
-function audiosg() {
-	var audio = document.getElementById("startgame");
-	audio.play();
-}
-
-function audiosgup() {
-	var audio = document.getElementById("startgame");
-	audio.volume = 1.0;
-}
-
-function audiosgdown() {
-	var audio = document.getElementById("startgame");
-	audio.volume = 0.2;
-}
-
-function audiosgmute() {
-	var audio = document.getElementById("startgame");
-	audio.volume = 0.0;
-}
-/*===============Bot Entered===============*/
-function audiobe() {
-	var audio = document.getElementById("botentered");
-	audio.play();
-}
-
-function audiobeup() {
-	var audio = document.getElementById("botentered");
-	audio.volume = 1.0;
-}
-
-function audiobedown() {
-	var audio = document.getElementById("botentered");
-	audio.volume = 0.2;
-}
-
-function audiobemute() {
-	var audio = document.getElementById("botentered");
-	audio.volume = 0.0;
-}
-/*===============You Won===============*/
-function audiowon() {
-	var audio = document.getElementById("youwon");
-	audio.play();
-}
-
-function audiowonup() {
-	var audio = document.getElementById("youwon");
-	audio.volume = 1.0;
-}
-
-function audiowondown() {
-	var audio = document.getElementById("youwon");
-	audio.volume = 0.2;
-}
-
-function audiowonmute() {
-	var audio = document.getElementById("youwon");
-	audio.volume = 0.0;
-}
-/*===============Accept===============*/
-function audioa() {
-	var audio = document.getElementById("accepted");
-	audio.play();
-}
-
-function audioaup() {
-	var audio = document.getElementById("accepted");
-	audio.volume = 1.0;
-}
-
-function audioadown() {
-	var audio = document.getElementById("accepted");
-	audio.volume = 0.2;
-}
-
-function audioamute() {
-	var audio = document.getElementById("accepted");
-	audio.volume = 0.0;
-}
-/*===============Menu Click===============*/
-function audiomc() {
-	var audio = document.getElementById("menu");
-	audio.play();
-}
-
-function audiomcup() {
-	var audio = document.getElementById("menu");
-	audio.volume = 1.0;
-}
-
-function audiomcdown() {
-	var audio = document.getElementById("menu");
-	audio.volume = 0.2;
-}
-
-function audiomcmute() {
-	var audio = document.getElementById("menu");
-	audio.volume = 0.0;
-}
-/*===============Unbox===============*/
-function audioub() {
-	var audio = document.getElementById("unbox");
-	audio.play();
-}
-
-function audioubup() {
-	var audio = document.getElementById("unbox");
-	audio.volume = 1.0;
-}
-
-function audioubdown() {
-	var audio = document.getElementById("unbox");
-	audio.volume = 0.2;
-}
-
-function audioubmute() {
-	var audio = document.getElementById("unbox");
-	audio.volume = 0.0;
-}
-
-
-
 
 var audio = document.getElementById('startgame');
 var audio = document.getElementById('botentered');
@@ -24097,37 +24165,321 @@ audio.addEventListener('volume', function() {
 	console.log('changed.', arguments);
 }, true);
 
-function myFunction() {
+$(document).on('click','#btnFlip',function() {
 	var gameWelcome = alert("Welcome to the coin toss game!");
 	var x = prompt("Enter a Value", "0")
-	if (+x > +money) {
-		window.alert = function() {};
-	} else if (+x < +0) {
-		window.alert = function() {};
-	} else {
-		var y = 2;
-		var z = x * y;
-		var userChoice = prompt("Do you choose T or CT?").toUpperCase();
-		var coinToss = Math.random();
-		if (userChoice === "T") {
-			if (coinToss < 0.5) {
-				var result = alert("The coin landed on T. You Win!");
-				money += z;
-			} else {
-				var result = alert("The coin landed on CT. You Lose!");
-				money -= x;
-			}
+	if (isNaN(x))
+	{
+	var no = alert("Please enter a number, not a letter!");
+	}
+	else
+	{
+		if (+x > +money) {
+			window.alert = function() {};
+		} else if (+x < +0) {
+			window.alert = function() {};
 		} else {
-			if (coinToss < 0.5) {
-				var result = alert("The coin landed on T. You Lose!");
-				money -= x;
+			var y = 2;
+			var z = x * y;
+			var userChoice = prompt("Do you choose T or CT?").toUpperCase();
+			var coinToss = Math.random();
+			if (userChoice === "T") {
+				if (coinToss < 0.5) {
+					money += z;
+				} else {
+					money -= x;
+				}
 			} else {
-				var result = alert("The coin landed on CT. You Win!");
-				money += z;
+				if (coinToss < 0.5) {
+					money -= x;
+				} else {
+					money += z;
+				}
 			}
 		}
 	}
+});
+
+// Get all variables
+var bannerImage = document.getElementById('bannerImg');
+var result = document.getElementById('res');
+var img = document.getElementById('tableBanner');
+
+// 
+bannerImage.addEventListener('change', function() {
+    var file = this.files[0];
+    // declare a maxSize (3Mb)
+    var maxSize = 3000000;
+
+    if (file.type.indexOf('image') < 0) {
+        res.innerHTML = 'invalid type';
+        return;
+    }
+    var fReader = new FileReader();
+    fReader.onload = function() {
+    	img.onload = function(){
+    		// if localStorage fails, it should throw an exception
+			try{
+				// pass the ratio of the file size/maxSize to your toB64 func in case we're already out of scope
+				localStorage.setItem("imgData", getBase64Image(img, (file.size/maxSize), file.type));
+				}
+			catch(e){
+				var msg = e.message.toLowerCase();
+				// We exceeded the localStorage quota
+				if(msg.indexOf('storage')>-1 || msg.indexOf('quota')>-1){
+					// we're dealing with a jpeg image :  try to reduce the quality
+					if(file.type.match(/jpe?g/)){
+						console.log('reducing jpeg quality');
+						localStorage.setItem("imgData", getBase64Image(img, (file.size/maxSize), file.type, 0.7));
+						}
+					// we're dealing with a png image :  try to reduce the size
+					else{
+						console.log('reducing png size');
+						// maxSize is a total approximation I got from some tests with a random pixel generated img
+						var maxPxSize = 750000,
+						imgSize = (img.width*img.height);
+						localStorage.setItem("imgData", getBase64Image(img, (imgSize/maxPxSize), file.type));
+						}
+					}
+				}
+			}
+        img.src = fReader.result;
+    };
+    
+    fReader.readAsDataURL(file);
+});
+
+function getBase64Image(img, sizeRatio, type, quality) {
+	// if we've got an svg, don't convert it, svg will certainly be less big than any pixel image
+	if(type.indexOf('svg+xml')>0) return img.src;
+
+	// if we've got a jpeg
+	if(type.match(/jpe?g/)){
+		var maxheight = 70;
+  var maxwidth = 70;
+
+	if(img.width > maxwidth && img.height > maxheight)
+  {
+    var canvas = document.createElement("canvas");
+	// if our image file is too large, then reduce its size
+    canvas.width = maxwidth;
+    canvas.height = maxheight;
+
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    // if we already tried to reduce its size but it's still failing, then reduce the jpeg quality
+    var dataURL = canvas.toDataURL(type, quality);
+    
+    return dataURL;
+   }
+   else if(img.width > maxwidth && img.height == maxheight)
+  {
+    var canvas = document.createElement("canvas");
+	// if our image file is too large, then reduce its size
+    canvas.width = maxwidth;
+    canvas.height = img.height;
+
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    // if we already tried to reduce its size but it's still failing, then reduce the jpeg quality
+    var dataURL = canvas.toDataURL(type, quality);
+    
+    return dataURL;
+   }
+   else if(img.width == maxwidth && img.height > maxheight)
+  {
+    var canvas = document.createElement("canvas");
+	// if our image file is too large, then reduce its size
+    canvas.width = img.width;
+    canvas.height = maxheight;
+
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    // if we already tried to reduce its size but it's still failing, then reduce the jpeg quality
+    var dataURL = canvas.toDataURL(type, quality);
+    
+    return dataURL;
+   }
+  else if(img.width < maxwidth && img.height < maxheight)
+  {
+    var canvas = document.createElement("canvas");
+	// if our image file is too large, then reduce its size
+    canvas.width = maxwidth;
+    canvas.height = maxheight;
+
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    // if we already tried to reduce its size but it's still failing, then reduce the jpeg quality
+    var dataURL = canvas.toDataURL(type, quality);
+    
+    return dataURL;
+   }
+ else if(img.width < maxwidth && img.height == maxheight)
+  {
+    var canvas = document.createElement("canvas");
+	// if our image file is too large, then reduce its size
+    canvas.width = maxwidth;
+    canvas.height = img.height;
+
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    // if we already tried to reduce its size but it's still failing, then reduce the jpeg quality
+    var dataURL = canvas.toDataURL(type, quality);
+    
+    return dataURL;
+   }
+  else if(img.width == maxwidth && img.height < maxheight)
+  {
+    var canvas = document.createElement("canvas");
+	// if our image file is too large, then reduce its size
+    canvas.width = img.width;
+    canvas.height = maxheight;
+
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    // if we already tried to reduce its size but it's still failing, then reduce the jpeg quality
+    var dataURL = canvas.toDataURL(type, quality);
+    
+    return dataURL;
+   }
+   else
+  {
+    var canvas = document.createElement("canvas");
+	// if our image file is too large, then reduce its size
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    // if we already tried to reduce its size but it's still failing, then reduce the jpeg quality
+    var dataURL = canvas.toDataURL(type, quality);
+    
+    return dataURL;
+   }
+		}
+	// if we've got some other image type
+	else type = 'image/png';
+	
+  var maxheight = 70;
+  var maxwidth = 70;
+
+	if(img.width > maxwidth && img.height > maxheight)
+  {
+    var canvas = document.createElement("canvas");
+	// if our image file is too large, then reduce its size
+    canvas.width = maxwidth;
+    canvas.height = maxheight;
+
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    // if we already tried to reduce its size but it's still failing, then reduce the jpeg quality
+    var dataURL = canvas.toDataURL(type, quality);
+    
+    return dataURL;
+   }
+   else if(img.width > maxwidth && img.height == maxheight)
+  {
+    var canvas = document.createElement("canvas");
+	// if our image file is too large, then reduce its size
+    canvas.width = maxwidth;
+    canvas.height = img.height;
+
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    // if we already tried to reduce its size but it's still failing, then reduce the jpeg quality
+    var dataURL = canvas.toDataURL(type, quality);
+    
+    return dataURL;
+   }
+   else if(img.width == maxwidth && img.height > maxheight)
+  {
+    var canvas = document.createElement("canvas");
+	// if our image file is too large, then reduce its size
+    canvas.width = img.width;
+    canvas.height = maxheight;
+
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    // if we already tried to reduce its size but it's still failing, then reduce the jpeg quality
+    var dataURL = canvas.toDataURL(type, quality);
+    
+    return dataURL;
+   }
+  else if(img.width < maxwidth && img.height < maxheight)
+  {
+    var canvas = document.createElement("canvas");
+	// if our image file is too large, then reduce its size
+    canvas.width = maxwidth;
+    canvas.height = maxheight;
+
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    // if we already tried to reduce its size but it's still failing, then reduce the jpeg quality
+    var dataURL = canvas.toDataURL(type, quality);
+    
+    return dataURL;
+   }
+ else if(img.width < maxwidth && img.height == maxheight)
+  {
+    var canvas = document.createElement("canvas");
+	// if our image file is too large, then reduce its size
+    canvas.width = maxwidth;
+    canvas.height = img.height;
+
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    // if we already tried to reduce its size but it's still failing, then reduce the jpeg quality
+    var dataURL = canvas.toDataURL(type, quality);
+    
+    return dataURL;
+   }
+  else if(img.width == maxwidth && img.height < maxheight)
+  {
+    var canvas = document.createElement("canvas");
+	// if our image file is too large, then reduce its size
+    canvas.width = img.width;
+    canvas.height = maxheight;
+
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    // if we already tried to reduce its size but it's still failing, then reduce the jpeg quality
+    var dataURL = canvas.toDataURL(type, quality);
+    
+    return dataURL;
+   }
+   else
+  {
+    var canvas = document.createElement("canvas");
+	// if our image file is too large, then reduce its size
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    // if we already tried to reduce its size but it's still failing, then reduce the jpeg quality
+    var dataURL = canvas.toDataURL(type, quality);
+    
+    return dataURL;
+   }
 }
+
+function fetchimage () {
+    var dataImage = localStorage.getItem('imgData');
+    img.src = dataImage;
+}
+
+// Call fetch to get image from localStorage.
+fetchimage();
+
+$('#save').on('click', function(){
+
+    $('input[type="text"]').each(function(){    
+        var id = $(this).attr('id');
+        var value = $(this).val();
+       localStorage.setItem(id, value);
+        
+    });   
+});
 
 /*==============================================================================
 Canvas
@@ -24231,3 +24583,4 @@ function init() {
 	drawStackingUpgrades();
 }
 init();
+})();

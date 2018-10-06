@@ -82,6 +82,27 @@ html, body {
 	background: url(https://i.imgur.com/zoKOaEY.png) no-repeat;
 }
 
+.profile {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 50px;
+    line-height: 50px;
+    float: right;
+    cursor: pointer;
+}
+.profileavatar {
+    color: #fff;
+	width: 49px;
+	height: 49px;
+    text-decoration: none;
+    margin-right: 20px;
+    line-height: 50px;
+    float: right;
+    cursor: pointer;
+	outline: 1px #25793B solid;
+	
+}
+
 .about {
 	color: #fff;
 	text-decoration: none;
@@ -96,15 +117,6 @@ html, body {
 	top: 50px;
 	height: 300px;
 	overflow: hidden;
-}
-
-.cheatC {
-	color: #fff;
-	text-decoration: none;
-	margin-right: 10px;
-	line-height: 50px;
-	float: right;
-	cursor: pointer;
 }
 
 .aboutInfo {
@@ -323,7 +335,7 @@ html, body {
 	position: absolute;
 	right: 0;
 	left: 0;
-	bottom: 75px;
+	bottom: 150px;
 }
 
 .jackpotCurrentWorth {
@@ -371,6 +383,20 @@ html, body {
 	text-align: center;
 	color: #fff;
 	font-size: 25px;
+}
+.winneravatar {
+	height: 70px;
+	width: 70px;
+	float: center;
+	margin: auto;
+	outline: 1px #25793B solid;
+}
+
+.tableCanner {
+	height: 70px;
+	width: 70px;
+	margin-left: 50px;
+	outline: 1px #25793B solid;
 }
 
 .jackpotCountDownLabel {
@@ -426,7 +452,7 @@ html, body {
 	width: 600px;
 	left: 0;
 	right: 0;
-	height: 89.75px;
+	height: 95px;
 	background: #101619;
 	overflow-x: scroll;
 }
@@ -462,15 +488,16 @@ html, body {
 
 .jackpotRightSTBTag {
 	position: absolute;
-  bottom: 165px;
+	bottom: 186px;
 	font-family: 'Rajdhani', sans-serif;
 	color: #273135;
 	float: left;
-	height: 20px;
+	height: 23px;
 	line-height: 24px;
 	padding-left: 6px;
 	width: 100%;
 	margin-top: 1px;
+	outline: 1px #186144 solid;
 }
 
 .inventorySwapItem {
@@ -595,10 +622,8 @@ html, body {
 }
 
 .depositorSkinContainer {
-	height: 80px;
-	float: right;
+	height: 100%;
 	overflow-x: scroll;
-	overflow-y: scroll;
 }
 
 .depositorSkin {
@@ -997,6 +1022,25 @@ html, body {
 	width: 100%;
 	overflow-y: auto;
 	overflow-x: hidden;
+	
+}
+
+#btnFlip {
+    border: none;
+    background: none;
+}
+
+
+.newsContainer {
+	display: none;
+	height: 100%;
+	width: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
+	font-family: 'Rajdhani', sans-serif;
+	color: #354146;
+	line-height: 30px;
+	margin-top: 1px;
 }
 
 .case {
@@ -1168,7 +1212,7 @@ div.knife {
 	right: 0;
 	top: 7px;
 	width: 800px;
-	height: 35px;
+	height: 39px;
 	line-height: 35px;
 	text-align: center;
 	background: #186144;
@@ -1223,6 +1267,11 @@ div.knife {
     height:20px;
 }
 .ub {
+    width:450px;
+    height:20px;
+}
+
+.pop {
     width:450px;
     height:20px;
 }
