@@ -3,7 +3,7 @@
 (function(){
 var itemCounter = 0;
 var fps = 15;
-
+var coinflip = false;
 var money = 7.50;
 var username = localStorage.getItem('username');
 if (localStorage.getItem("username") === null) {
@@ -24079,8 +24079,14 @@ setTimeout(function() {
 }, 1500);
 
 setInterval(function() {
+	if (coinflip == true)
+	{
+	console.log("Can't save while coinflipping.");	
+	}
+	else {
 	saveGameState();
-}, 3000);
+	}
+}, 30000);
 
 /*===============SAVEGAME===============*/
 function saveGameState() {
@@ -24097,6 +24103,7 @@ function saveGameState() {
 		"lostsound" : lostsound,
 		"wonsound" : wonsound,
 		"botsound" : botsound,
+		"coinflip" : coinflip,
 	};
 
 	localStorage.setItem("savegame", JSON.stringify(string));
@@ -24121,6 +24128,7 @@ function loadGameState() {
 		lostsound = saveGame["lostsound"];
 		wonsound = saveGame["wonsound"];
 		botsound = saveGame["botsound"];
+		coinflip = saveGame["coinflip"];
 		drawInventory();
 		inventoryValue();
 		skinOverflow();
@@ -24172,12 +24180,20 @@ $(document).on('click','#btnFlip',function() {
 	{
 	var no = alert("Please enter a number, not a letter!");
 	}
+	else if (x == 0)
+	{
+	var nooo = alert("Please enter a value higher than 0!");
+	}
 	else
 	{
+		coinflip = true;
+		saveGameState();
 		if (+x > +money) {
 			window.alert = function() {};
+			coinflip = false;
 		} else if (+x < +0) {
 			window.alert = function() {};
+			coinflip = false;
 		} else {
 			var y = 2;
 			var z = x * y;
@@ -24185,15 +24201,23 @@ $(document).on('click','#btnFlip',function() {
 			var coinToss = Math.random();
 			if (userChoice === "T") {
 				if (coinToss < 0.5) {
+					coinflip = false;
 					money += z;
+					saveGameState();
 				} else {
+					coinflip = false;
 					money -= x;
+					saveGameState();
 				}
 			} else {
 				if (coinToss < 0.5) {
+					coinflip = false;
 					money -= x;
+					saveGameState();
 				} else {
+					coinflip = false;
 					money += z;
+					saveGameState();
 				}
 			}
 		}
