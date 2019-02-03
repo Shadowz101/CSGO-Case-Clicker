@@ -4447,6 +4447,26 @@ var knives = {
 			name: "✯ Huntsman Knife | Urban Masked FN",
 			price: 127.00,
 			img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJfx_LLZTRB7dCJlZG0kfjmML7VqWdY781lteXA54vwxla1-xI-YWqgcoGRcAdoYFvQ_lS6k-26hJ69usibynFjuHIn7XfanhepwUYb_Z1lKzI"
+		},
+		knife57: {
+				name: "✯ M4A4 | Howl WW",
+				price: 545.00,
+				img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhjxszFJTwT09S5g4yCmfDLPr7Vn35c18lwmO7Eu9-s0AXs-RBkZmCmIoCQcQU3aVuCrFfrwee-gsO77s6bn3Bg6SF3t3bD30vgkAZ9U90"
+		},
+		knife58: {
+				name: "✯ M4A4 | Howl FT",
+				price: 587.00,
+				img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhjxszFJTwT09S5g4yCmfDLPr7Vn35c18lwmO7Eu9-s0AXs-RBkZmCmIoCQcQU3aVuCrFfrwee-gsO77s6bn3Bg6SF3t3bD30vgkAZ9U90"
+		},
+		knife59: {
+				name: "✯ M4A4 | Howl MW",
+				price: 675.00,
+				img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhjxszFJTwT09S5g4yCmfDLP7LWnn9u5MRjjeyP9tqhiQ2yqEo6Mmn3doPBcwZqZQrRr1O-we_sgMO5tZ_BzCFr6ycltmGdwULa1vGJFg"
+			},
+		knife60: {
+				name: "✯ M4A4 | Howl FN",
+				price: 1050.00,
+				img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhjxszFJTwT09S5g4yCmfDLP7LWnn9u5MRjjeyP9tqhiQ2yqEo6Mmn3doPBcwZqZQrRr1O-we_sgMO5tZ_BzCFr6ycltmGdwULa1vGJFg"
 		}
 	},
 	huntst: {
@@ -4729,6 +4749,26 @@ var knives = {
 			name: "✯ StatTrak™ Huntsman Knife | Urban Masked FN",
 			price: 254.00,
 			img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJfx_LLZTRB7dCJlZG0kfjmML7VqWdY781lteXA54vwxla1-xI-YWqgcoGRcAdoYFvQ_lS6k-26hJ69usibynFjuHIn7XfanhepwUYb_Z1lKzI"
+		},
+		knife57: {
+				name: "✯ StatTrak™ M4A4 | Howl WW",
+				price: 1699.99,
+				img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhjxszFJTwT09S5g4yCmfDLPr7Vn35c18lwmO7Eu9-s0AXs-RBkZmCmIoCQcQU3aVuCrFfrwee-gsO77s6bn3Bg6SF3t3bD30vgkAZ9U90"
+		},
+		knife58: {
+				name: "✯ StatTrak™ M4A4 | Howl FT",
+				price: 1307.68,
+				img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhjxszFJTwT09S5g4yCmfDLPr7Vn35c18lwmO7Eu9-s0AXs-RBkZmCmIoCQcQU3aVuCrFfrwee-gsO77s6bn3Bg6SF3t3bD30vgkAZ9U90"
+		},
+		knife59: {
+				name: "✯ StatTrak™ M4A4 | Howl MW",
+				price: 1835.36,
+				img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhjxszFJTwT09S5g4yCmfDLP7LWnn9u5MRjjeyP9tqhiQ2yqEo6Mmn3doPBcwZqZQrRr1O-we_sgMO5tZ_BzCFr6ycltmGdwULa1vGJFg"
+			},
+		knife60: {
+				name: "✯ StatTrak™ M4A4 | Howl FN",
+				price: 2866.60,
+				img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhjxszFJTwT09S5g4yCmfDLP7LWnn9u5MRjjeyP9tqhiQ2yqEo6Mmn3doPBcwZqZQrRr1O-we_sgMO5tZ_BzCFr6ycltmGdwULa1vGJFg"
 		}
 	},
 	butterfly: {
