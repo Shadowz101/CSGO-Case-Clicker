@@ -24123,6 +24123,10 @@ setInterval(function() {
 	{
 	console.log("Can't save while coinflipping.");	
 	}
+	else if (jackpotInProgress == true)
+	{
+	console.log("Can't save while betting.");	
+	}
 	else {
 	saveGameState();
 	}
